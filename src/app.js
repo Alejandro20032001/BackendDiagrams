@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import classRoutes from './routes/clase.routes'
 import { createRoles } from './libs/initSetUp'
 const app = express()
 createRoles()
@@ -15,4 +16,5 @@ app.get('/', (req, res) => {
 
 app.use('/user',userRoutes)
 app.use('/auth', authRoutes)
+app.use('/class', classRoutes)
 export default app;
