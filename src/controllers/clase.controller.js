@@ -37,3 +37,9 @@ export const getClasses = async(req, res) => {
   const classesFound = await Clase.find().populate(["grupoNombre", "grupoAtributos", "grupoMetodos"]);
   res.status(200).json(classesFound);
 }
+
+export const getClassById = async(req, res) => {
+  const classesFound = await Clase.findById(req.params.classId);
+  if(classesFound) res.status(200).json(classesFound)
+  else res.status(404).json({ message: "not found"})
+}
