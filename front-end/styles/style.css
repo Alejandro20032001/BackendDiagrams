@@ -1,0 +1,39 @@
+html, body { height: 100%; }
+body { margin: 0; }
+
+*{
+    overflow: hidden;
+}
+
+.lienzo{
+    height: 100%;
+}
+
+.menu{
+    height: 100%;
+    right: 0;
+}
+
+.anadirAtributos{
+    width: 100%;
+    padding: 10px;
+    display: none;
+}
+
+#botonAtributos{
+    margin-top: 10px;
+}
+
+#nombreAtri,#tipoAtri,#nombreMetodo,#retornoMetodo,#parametros{
+    width: 95%;
+}
+
+.anadirMetodos{
+    width: 100%;
+    padding: 10px;
+    display: none;
+}
+
+textarea{
+  resize: none;
+}

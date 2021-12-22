@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graficador Canvas</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="scripts/arrastrable.js"></script>
+    <script src="scripts/flechas.js"></script>
+    <script src="scripts/funcionesAtributos.js"></script>
+    <script src="scripts/funcionesClase.js"></script>
+    <script src="scripts/funcionesMetodos.js"></script>
+    <script src="scripts/funcionesNombreClase.js"></script>
+    <script src="scripts/persistencia.js"></script>
+    <script src="scripts/scriptPrincipal.js"></script>
+    <script src="scripts/tamanioLienzo.js"></script>
+    <script src="models/Clase.js"></script>
+    <script src="models/GrupoAtributos.js"></script>
+    <script src="models/GrupoMetodos.js"></script>
+    <script src="models/GrupoNombre.js"></script>
+    <script src="models/Union.js"></script>
+    <script src="consultas/consultas.js"></script>
+    <script src="consultas/cookies.js"></script>
+</head>
+
+<body onload="calcularTamanoLienzo();">
+
+    <div class="lienzo w3-col l10 m10 s10" id="contenedorLienzo">
+        <canvas id="lienzo">
+
+        </canvas>
+    </div>
+
+    <div class="menu w3-col l2 m2 s2 w3-sidebar w3-bar-block w3-card-4">
+        <div class="w3-bar-item w3-bar-block botones">
+            <a class="w3-bar-item w3-button">
+                <img src="assets/Clase.png" alt="" class="w3-image" onclick="dibujarClase()">
+            </a>
+            <a class="w3-bar-item w3-button">
+                <img src="assets/Herencia.png" alt="" class="w3-image" onclick="setHerencia()">
+            </a>
+            <a class="w3-bar-item w3-button">
+                <img src="assets/Normal2.jpg" alt="" class="w3-image" onclick="setUso()">
+            </a>
+            <button class="w3-bar-item w3-button" type="button" onclick = "guardar()">
+                Guardar
+            </button>
+            <button class="w3-bar-item w3-button" type="button" onclick = "cargar()">
+                Cargar
+            </button>
+        </div>
+        <div class="anadirAtributos" id="seccionAtributos">
+            <form action="">
+                <label>Tipo de acceso:</label>
+                <br>
+                <input type="radio" name="accesoAtri" id="publicoAtri" checked>
+                <label for="publicoAtri">Publico</label>
+                <br>
+                <input type="radio" name="accesoAtri" id="privadoAtri">
+                <label for="privadoAtri">Privado</label>
+                <br>
+                <input type="radio" name="accesoAtri" id="protegidoAtri">
+                <label for="protegidoAtri">Protegido</label>
+                <br>
+                <label for="nombreAtri">Nombre atributo:</label>
+                <input type="text" name="nombre" id="nombreAtri">
+                <br>
+                <label for="tipoAtri">Tipo atributo:</label>
+                <input type="text" name="nombre" id="tipoAtri">
+                <br>
+                <input type="button" value="Crear atributo" onclick="guardarAtributo()" id="botonAtributos">
+            </form>
+        </div>
+        <div class="anadirMetodos" id="seccionMetodos">
+            <form action="">
+                <label>Tipo de acceso:</label>
+                <br>
+                <input type="radio" name="accesoMetodo" id="publicoMetodo" checked>
+                <label for="publicoMetodo">Publico</label>
+                <br>
+                <input type="radio" name="accesoMetodo" id="privadoMetodo">
+                <label for="privadoMetodo">Privado</label>
+                <br>
+                <input type="radio" name="accesoMetodo" id="protegidoMetodo">
+                <label for="protegidoMetodo">Protegido</label>
+                <br>
+                <label for="nombreMetodo">Nombre metodo:</label>
+                <input type="text" name="nombre" id="nombreMetodo">
+                <br>
+                <label for="retornoMetodo">Retorno metodo:</label>
+                <input type="text" name="nombre" id="retornoMetodo">
+                <br>
+                <label for="parametros">Parametros:</label>
+                <textarea name="" id="parametros"></textarea>
+                <br>
+
+                <input type="button" value="Crear metodo" onclick="guardarMetodo()">
+            </form>
+        </div>
+    </div>
+</body>
+</body>
+
+</html>
