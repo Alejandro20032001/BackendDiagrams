@@ -2,7 +2,7 @@ import Grupo from "../models/grupo.canvas";
 
 export const updateGroup = async (req, res) => {
   const grupoUpdated = await Grupo.findByIdAndUpdate(
-    req.params.userId,
+    req.params.grupoId,
     req.body
   );
   res.status(200).json(grupoUpdated);

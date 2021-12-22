@@ -15,7 +15,7 @@ const login = async () => {
   if (res.status == 201) {
     let algo = await res.json();
     token = algo.token;
-    setCookie("token", token, 1);//httponlycookies
+    setCookie("token", token, 1); //httponlycookies
     let a = document.cookie;
     console.log("Success");
     location.href = "./index.html";
@@ -24,9 +24,22 @@ const login = async () => {
 
 const miPerfil = async () => {
   token = getCookie("token");
-  console.log(token);
+
   const res = await fetch("http://localhost:3000/auth/miPerfil", {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-access-token": "Bearer " + token,
+    },
+  });
+  return await res.json();
+};
+const actualizarUsuario = async (id, act) => {
+  token = getCookie("token");
+  console.log(JSON.stringify(act));
+  const res = await fetch("http://localhost:3000/user/" + id, {
+    method: "PUT",
+    body: JSON.stringify(act),
     headers: {
       "Content-Type": "application/json",
       "x-access-token": "Bearer " + token,
@@ -57,7 +70,6 @@ const guardarClaseMongo = async (clase) => {
 };
 
 const guardarUnionMongo = async (union) => {
-  console.log(union.origen)
   const res = await fetch("http://localhost:3000/union", {
     method: "POST",
     body: JSON.stringify({
@@ -71,13 +83,12 @@ const guardarUnionMongo = async (union) => {
   });
   let unionRes = await res.json();
 
-  union.id = unionRes._id;
+  union._id = unionRes._id;
 
   if (res.status == 500) alert("Error en el servidor");
 };
 
 const actualizarClasesMongo = async (clase) => {
-  console.log(clase._id);
   const grupoNombre = clase.grupoNombre;
   const grupoAtributos = clase.grupoAtributos;
   const grupoMetodos = clase.grupoMetodos;
@@ -127,4 +138,26 @@ const actualizarGrupo = async (grupo, id) => {
       "Content-Type": "application/json",
     },
   });
+};
+
+const crearDiagrama = async (clases, uniones, nombre) => {
+  const res = await fetch("http://localhost:3000/diagram", {
+    method: "POST",
+    body: JSON.stringify({
+      clases: clases,
+      uniones: uniones,
+      nombreDiagrama: nombre,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  let diagramaRes = await res.json();
+
+  console.log(diagramaRes);
+  if (res.status == 500) {
+    alert("Error en el servidor");
+    return;
+  }
+  return diagramaRes;
 };

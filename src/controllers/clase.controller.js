@@ -28,7 +28,7 @@ async function crearGrupo(grupo, contenido, tipoGrupo) {
     ancho: grupo.ancho,
     alto: grupo.alto,
     contenido: contenido,
-    tipo: tipoGrupo,
+    tipoGrupo: tipoGrupo,
   });
   return await newGrupo.save();
 }
@@ -42,4 +42,12 @@ export const getClassById = async(req, res) => {
   const classesFound = await Clase.findById(req.params.classId);
   if(classesFound) res.status(200).json(classesFound)
   else res.status(404).json({ message: "not found"})
+}
+
+export const updateClassById = async (req, res) => {
+  const classUpdated = await Clase.findByIdAndUpdate(
+    req.params.classId,
+    req.body
+  );
+  res.status(200).json(classUpdated);
 }

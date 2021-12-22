@@ -14,33 +14,34 @@ function dibujar(e) {
 function dibujarUnion(origen, destino, tipo, ctx) {
   let x1, x2, y1, y2;
   calcularDimensiones(-1, origen);
-  x1 = origen.grupoNombre.x + (ancho / 2);
-  y1 = origen.grupoNombre.y + (alto / 2);
+  x1 = origen.grupoNombre.x + ancho / 2;
+  y1 = origen.grupoNombre.y + alto / 2;
 
   calcularDimensiones(-1, destino);
-  x2 = destino.grupoNombre.x + (ancho / 2);
-  y2 = destino.grupoNombre.y + (alto / 2);
+  x2 = destino.grupoNombre.x + ancho / 2;
+  y2 = destino.grupoNombre.y + alto / 2;
 
   ctx.save();
-  var dx = x2-x1, dy=y2-y1, len=Math.sqrt(dx*dx+dy*dy);
-  ctx.translate(x2,y2);
-  ctx.rotate(Math.atan2(dy,dx));
+  var dx = x2 - x1,
+    dy = y2 - y1,
+    len = Math.sqrt(dx * dx + dy * dy);
+  ctx.translate(x2, y2);
+  ctx.rotate(Math.atan2(dy, dx));
 
-  ctx.lineCap = 'round';
+  ctx.lineCap = "round";
   ctx.beginPath();
-  ctx.moveTo(0,0);
-  ctx.lineTo(-len,0);
+  ctx.moveTo(0, 0);
+  ctx.lineTo(-len, 0);
   ctx.closePath();
   ctx.stroke();
 
   ctx.beginPath();
-  ctx.moveTo(0,0);
-  ctx.lineTo(-30,-30/2);
-  ctx.lineTo(-30, 30/2);
+  ctx.moveTo(0, 0);
+  ctx.lineTo(-30, -30 / 2);
+  ctx.lineTo(-30, 30 / 2);
   ctx.closePath();
   ctx.stroke();
-  if(!tipo)
-    ctx.fill();
+  if (!tipo) ctx.fill();
 
   ctx.restore();
 }

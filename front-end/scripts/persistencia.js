@@ -1,6 +1,21 @@
 async function guardar() {
-  let idUsuario = await miPerfil();
-  console.log(idUsuario);
+  let nombreDiagrama = prompt("Nombre para el diagrama");
+  let clasesIds = getIds(clases);
+  let unionesIds = getIds(uniones);
+
+  console.log(clasesIds, unionesIds);
+
+  let diagrama = await crearDiagrama(clasesIds, unionesIds, nombreDiagrama);
+
+  let usuario = await miPerfil();
+
+  let idUsuario = usuario.user._id;
+  let diagramsDone = usuario.user.diagramsDone;
+
+  diagramsDone.push(diagrama._id);
+  console.log(JSON.stringify({ diagramsDone }));
+  console.log(await actualizarUsuario(idUsuario, { diagramsDone }));
+
   clases.forEach((clase) => {
     actualizarClasesMongo(clase);
   });
@@ -67,4 +82,12 @@ function crearClase(claseJson) {
     ),
     claseJson.id
   );
+}
+
+function getIds(array) {
+  let ids = [];
+  array.forEach((element) => {
+    ids.push(element._id);
+  });
+  return ids;
 }

@@ -4,6 +4,7 @@ const router = Router();
 
 router.post("/", classController.createClass);
 router.get("/", classController.getClasses);
-router.get("/classId", classController.getClassById);
+router.get("/:classId", classController.getClassById);
+router.put('/:classId', classController.updateClassById)
 
 export default router;
