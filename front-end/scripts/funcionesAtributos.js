@@ -37,10 +37,11 @@ function guardarAtributo() {
         claseSeleccionada.grupoAtributos.atributos.push(nuevoAtributo);
         menu.style.display = 'none';
         recalcularTamanios();
+        actualizarClasesMongo(claseSeleccionada);
         claseSeleccionada = null;
         atributo = false;
         metodo = false;
-        limpiarValores();
+        limpiarValores();       
         pintarTodo();
     }
 }

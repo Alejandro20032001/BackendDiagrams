@@ -39,6 +39,7 @@ function guardarMetodo() {
         claseSeleccionada.grupoMetodos.metodos.push(nuevoMetodo);
         menu.style.display = 'none';
         recalcularTamanios();
+        actualizarClasesMongo(claseSeleccionada);
         claseSeleccionada = null;
         atributo = false;
         metodo = false;

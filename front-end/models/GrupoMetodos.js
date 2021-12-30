@@ -5,6 +5,6 @@ class GrupoMetodos {
         this.ancho = ancho;
         this.alto = alto;
         this.metodos = [];
-        this.id = -1;
+        this._id = -1;
     }
 }

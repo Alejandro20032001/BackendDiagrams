@@ -1,4 +1,5 @@
 const login = async () => {
+  setCookie("idDiagrama", "", 0);
   const user = document.getElementsByName("user")[0].value;
   const password = document.getElementsByName("password")[0].value;
 
@@ -93,7 +94,7 @@ const actualizarClasesMongo = async (clase) => {
   const grupoAtributos = clase.grupoAtributos;
   const grupoMetodos = clase.grupoMetodos;
 
-  let id = grupoNombre.id;
+  let id = grupoNombre._id;
   actualizarGrupo(
     {
       x: grupoNombre.x,
@@ -105,7 +106,7 @@ const actualizarClasesMongo = async (clase) => {
     id
   );
   //atributos
-  id = grupoAtributos.id;
+  id = grupoAtributos._id;
   actualizarGrupo(
     {
       x: grupoAtributos.x,
@@ -117,7 +118,7 @@ const actualizarClasesMongo = async (clase) => {
     id
   );
 
-  id = grupoMetodos.id;
+  id = grupoMetodos._id;
   actualizarGrupo(
     {
       x: grupoMetodos.x,
@@ -160,4 +161,14 @@ const crearDiagrama = async (clases, uniones, nombre) => {
     return;
   }
   return diagramaRes;
+};
+
+const getDiagram = async (id) => {
+  const res = await fetch("http://localhost:3000/diagram/" + id, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return await res.json();
 };

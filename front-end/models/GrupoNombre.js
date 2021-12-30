@@ -5,6 +5,6 @@ class GrupoNombre {
         this.nombre = nombre;
         this.ancho = ancho;
         this.alto = alto;
-        this.id = -1;
+        this._id = -1;
     }
 }

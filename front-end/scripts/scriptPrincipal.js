@@ -1,7 +1,9 @@
 
 let clases = [];
 let uniones = [];
+let diagramas = ["diagrama1", "diagrama2"]
 let token = null;
+let diagrama = null;
 
 function pintarTodo() {
   let lienzo = document.getElementById("lienzo");

@@ -7,6 +7,6 @@ router.post("/", unionController.createUnion);
 
 router.put("/:unionId", unionController.updateUnion);
 
-router.get('/:grupoId', unionController.getUnionById)
+router.get('/:unionId', unionController.getUnionById)
 
 export default router;

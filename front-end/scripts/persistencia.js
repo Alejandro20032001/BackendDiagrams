@@ -1,21 +1,23 @@
 async function guardar() {
-  let nombreDiagrama = prompt("Nombre para el diagrama");
-  let clasesIds = getIds(clases);
-  let unionesIds = getIds(uniones);
+  let id = getCookie("idDiagrama");
+  if (id == "") {
+    let nombreDiagrama = prompt("Nombre para el diagrama");
+    let clasesIds = getIds(clases);
+    let unionesIds = getIds(uniones);
 
-  console.log(clasesIds, unionesIds);
+    console.log(clasesIds, unionesIds);
 
-  let diagrama = await crearDiagrama(clasesIds, unionesIds, nombreDiagrama);
+    let diagrama = await crearDiagrama(clasesIds, unionesIds, nombreDiagrama);
 
-  let usuario = await miPerfil();
+    let usuario = await miPerfil();
 
-  let idUsuario = usuario.user._id;
-  let diagramsDone = usuario.user.diagramsDone;
+    let idUsuario = usuario.user._id;
+    let diagramsDone = usuario.user.diagramsDone;
 
-  diagramsDone.push(diagrama._id);
-  console.log(JSON.stringify({ diagramsDone }));
-  console.log(await actualizarUsuario(idUsuario, { diagramsDone }));
-
+    diagramsDone.push(diagrama._id);
+    console.log(JSON.stringify({ diagramsDone }));
+    console.log(await actualizarUsuario(idUsuario, { diagramsDone }));
+  }
   clases.forEach((clase) => {
     actualizarClasesMongo(clase);
   });
@@ -32,13 +34,21 @@ function cargar() {
   let clasesJson = JSON.parse(localStorage.getItem("clases"));
 
   for (let i = 0; i < clasesJson.length; i++) {
-    clases.push(crearClase(clasesJson[i]));
+    let clase = clasesJson[i];
+    let claseCreada = crearClase(clase);
+    claseCreada._id = clase._id;
+    claseCreada.grupoNombre._id = clase.grupoNombre._id;
+    claseCreada.grupoAtributos._id = clase.grupoAtributos._id;
+    claseCreada.grupoAtributos.atributos = clase.grupoAtributos.atributos;
+    claseCreada.grupoMetodos._id = clase.grupoMetodos._id;
+    claseCreada.grupoMetodos.metodos = clase.grupoMetodos.metodos;
+    clases.push(claseCreada);
   }
 
   for (let i = 0; i < unionesJson.length; i++) {
     uniones.push({
-      origen: buscarClase(unionesJson[i].origen.id),
-      destino: buscarClase(unionesJson[i].destino.id),
+      origen: buscarClase(unionesJson[i].origen._id),
+      destino: buscarClase(unionesJson[i].destino._id),
       herencia: unionesJson[i].herencia,
     });
   }
@@ -48,7 +58,7 @@ function cargar() {
 function buscarClase(idClase) {
   let buscado = null;
   for (let i = 0; i < clases.length; i++) {
-    if (clases[i].id === idClase) buscado = clases[i];
+    if (clases[i]._id === idClase) buscado = clases[i];
   }
   return buscado;
 }
@@ -80,7 +90,7 @@ function crearClase(claseJson) {
       metodos.alto,
       metodos.metodos
     ),
-    claseJson.id
+    claseJson._id
   );
 }
 

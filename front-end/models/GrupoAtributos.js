@@ -5,6 +5,6 @@ class GrupoAtributos {
         this.ancho = ancho;
         this.alto = alto;
         this.atributos = [];
-        this.id = -1;
+        this._id = -1;
     }
 }
