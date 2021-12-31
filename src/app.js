@@ -6,6 +6,9 @@ import classRoutes from "./routes/clase.routes";
 import groupRoutes from "./routes/group.routes";
 import unionRoutes from "./routes/union.routes";
 import diagramRoutes from "./routes/diagram.routes";
+import tareaRoutes from "./routes/tarea.routes";
+import cursoRoutes from "./routes/curso.routes";
+import respuestaRoutes from "./routes/respuesta.routes";
 import { createRoles } from "./libs/initSetUp";
 
 const cors = require("cors");
@@ -26,6 +29,9 @@ app.use("/class", classRoutes);
 app.use("/group", groupRoutes);
 app.use("/union", unionRoutes);
 app.use("/diagram", diagramRoutes);
+app.use("/tarea", tareaRoutes);
+app.use("/respuesta", respuestaRoutes);
+app.use("/curso", cursoRoutes);
 
 app.use(express.static("front-end"))
 

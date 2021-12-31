@@ -23,12 +23,13 @@ async function crearListaDiagramas() {
 function irIndex() {
   localStorage.removeItem("clases");
   localStorage.removeItem("uniones");
+  setCookie("idDiagrama","",0)
   location.href = "./index.html";
 }
 function irDiagramador(diagrama) {
   const clasesMongo = diagrama.clases;
   const unionesMongo = diagrama.uniones;
-  castClases(clasesMongo);
+  castClases(clasesMongo); 
   console.log(diagrama);
   console.log(diagrama.clases);
   console.log(diagrama.uniones);
