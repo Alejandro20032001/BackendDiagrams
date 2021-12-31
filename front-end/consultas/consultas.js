@@ -19,8 +19,8 @@ const login = async () => {
     setCookie("token", token, 1); //httponlycookies
     let a = document.cookie;
     console.log("Success");
-    location.href = "./index.html";
-  }
+    location.href = "./diagramasEstudiante.html";
+  } else alert("Error en el username o password");
 };
 
 const miPerfil = async () => {
@@ -33,6 +33,7 @@ const miPerfil = async () => {
       "x-access-token": "Bearer " + token,
     },
   });
+  if (!res.ok) setCookie("token", "", 0);
   return await res.json();
 };
 const actualizarUsuario = async (id, act) => {

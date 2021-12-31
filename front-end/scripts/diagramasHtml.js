@@ -9,6 +9,7 @@ async function crearListaDiagramas() {
   for (let i = 0; i < diagramsDone.length; i++) {
     let diagram = await getDiagram(diagramsDone[i]);
     let li1 = document.createElement("li");
+    li1.setAttribute("class", "seleccionable");
     let li1Texto = document.createTextNode(diagram.nombreDiagrama);
     li1.addEventListener("mousedown", function () {
       irDiagramador(diagram);
@@ -19,7 +20,11 @@ async function crearListaDiagramas() {
   }
   docDiagrama.append(ul);
 }
-
+function irIndex() {
+  localStorage.removeItem("clases");
+  localStorage.removeItem("uniones");
+  location.href = "./index.html";
+}
 function irDiagramador(diagrama) {
   const clasesMongo = diagrama.clases;
   const unionesMongo = diagrama.uniones;
@@ -52,7 +57,7 @@ function castClases(clasesMongo) {
     let metodos = clase.grupoMetodos;
     let nombre = clase.grupoNombre;
 
-    let nuevaClase = new Clase( 
+    let nuevaClase = new Clase(
       new GrupoNombre(
         nombre.x,
         nombre.y,
