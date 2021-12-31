@@ -13,4 +13,4 @@ const cursoSchema = new Schema({
   ],
 });
 
-export default model("Union", cursoSchema);
+export default model("Curso", cursoSchema);
